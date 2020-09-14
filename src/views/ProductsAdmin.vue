@@ -94,7 +94,6 @@ export default {
           console.dir(err)
           if (err.request.status === 401) {
             alert('請先登入')
-            window.location.href = 'Login.html'
           }
           this.getingData = false
         })

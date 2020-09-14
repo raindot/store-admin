@@ -1,34 +1,18 @@
 <template>
   <div class="container">
-    <nav class="navbar navbar-expand-lg navbar-light">
-      <a class="navbar-brand" href="#">後台系統</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav">
-          <li class="nav-item">
-            <a class="nav-link" href="#">
-              產品列表
-            </a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">優惠券列表</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">訂單列表</a>
-          </li>
-        </ul>
-      </div>
-    </nav>
+    <b-navbar toggleable="lg" variant="light">
+        <b-navbar-brand href="#">後台</b-navbar-brand>
+
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item :to="{ name: 'products-admin'}">產品列表</b-nav-item>
+            <!-- <b-nav-item :to="{ name: 'coupon-list'}">優惠券列表</b-nav-item> -->
+            <b-nav-item :to="{ name: 'order-list'}">訂單列表</b-nav-item>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
     <router-view></router-view>
   </div>
 </template>

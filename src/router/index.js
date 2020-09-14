@@ -65,7 +65,16 @@ const routes = [
     children: [
       {
         path: 'products',
+        name: 'products-admin',
         component: () => import(/* webpackChunkName: "about" */ '../views/ProductsAdmin.vue'),
+        meta: {
+          needLogin: true
+        }
+      },
+      {
+        path: 'order-list',
+        name: 'order-list',
+        component: () => import('../views/OrderList.vue'),
         meta: {
           needLogin: true
         }
