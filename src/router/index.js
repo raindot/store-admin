@@ -86,6 +86,14 @@ const routes = [
         meta: {
           needLogin: true
         }
+      },
+      {
+        path: 'file-list',
+        name: 'file-list',
+        component: () => import('../views/FileList.vue'),
+        meta: {
+          needLogin: true
+        }
       }
     ]
   },

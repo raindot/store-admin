@@ -99,8 +99,8 @@
               required
             ></textarea>
           </div>
-          <div class="form-group col-md-6">
-              <label for="image-url">產品圖片</label>
+          <div class="form-group">
+              <label for="image-url">產品圖片網址</label>
               <input
                 id="image-url"
                 v-model="tempProduct.imageUrl[0]"
@@ -109,7 +109,29 @@
                 placeholder="產品圖片"
                 required
               />
-            </div>
+          </div>
+          <div class="form-group">
+            <label for="customFile">
+              或 上傳圖片
+              <i
+                v-if="fileUploading"
+                class="fas fa-spinner fa-spin"
+              />
+            </label>
+            <input
+              id="customFile"
+              ref="upload"
+              type="file"
+              class="form-control"
+              @change="uploadFile"
+            >
+          </div>
+          <img
+            v-for="img in tempProduct.imageUrl"
+            :key="img"
+            class="col-md-6 img-fluid"
+            :src="img"
+          >
           <div class="form-group">
             <div class="form-check">
               <input
@@ -154,9 +176,10 @@ export default {
         price: '',
         content: '',
         description: '',
-        imageUrl: ['']
+        imageUrl: []
       },
-      isNew: false
+      isNew: false,
+      fileUploading: false
     }
   },
   created () {},
@@ -166,8 +189,32 @@ export default {
         product: this.tempProduct,
         isNew: this.isNew
       })
+    },
+    uploadFile () {
+      const uploadedFile = this.$refs.upload.files[0]
+      const formData = new FormData()
+      formData.append('file', uploadedFile)
+      const uploadPath = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/admin/storage`
+      this.fileUploading = true
+
+      this.axios.post(uploadPath, formData, {
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        }
+      }).then((res) => {
+        this.fileUploading = false
+
+        if (res.status === 200) {
+          this.tempProduct.imageUrl.push(res.data.data.path)
+        }
+      }).catch((err) => {
+        console.log(err)
+        // alert('上傳失敗，檔案大小不能超過2MB')
+        this.status.fileUploading = false
+      })
     }
   }
+
 }
 </script>
 
