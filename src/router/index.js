@@ -78,6 +78,14 @@ const routes = [
         meta: {
           needLogin: true
         }
+      },
+      {
+        path: 'coupon-list',
+        name: 'coupon-list',
+        component: () => import('../views/CouponList.vue'),
+        meta: {
+          needLogin: true
+        }
       }
     ]
   },

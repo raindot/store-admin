@@ -8,8 +8,8 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item :to="{ name: 'products-admin'}">產品列表</b-nav-item>
-            <!-- <b-nav-item :to="{ name: 'coupon-list'}">優惠券列表</b-nav-item> -->
             <b-nav-item :to="{ name: 'order-list'}">訂單列表</b-nav-item>
+            <b-nav-item :to="{ name: 'coupon-list'}">優惠券列表</b-nav-item>
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>

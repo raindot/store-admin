@@ -127,7 +127,7 @@
             :disabled="loading"
             type="button"
             class="btn btn-secondary"
-            data-dismiss="modal"
+            @click="$bvModal.hide('product-modal')"
           >取消</button>
           <button v-if="loading" type="button" class="btn btn-primary">
             <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
