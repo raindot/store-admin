@@ -47,8 +47,7 @@ export default {
         current_page: 1,
         total_pages: 1,
         links: []
-      },
-      getingData: false
+      }
     }
   },
   created () {
@@ -56,7 +55,7 @@ export default {
   },
   methods: {
     getOrders (page = 1) {
-      this.getingData = true
+      this.$bus.$emit('show-overlay', true)
       const ordersPath = `${this.api}/${this.UUID}/admin/ec/orders`
       this.axios
         .get(ordersPath, {
@@ -69,11 +68,11 @@ export default {
           console.log(res.data)
           this.orders = res.data.data
           this.pagination = res.data.meta.pagination
-          this.getingData = false
+          this.$bus.$emit('show-overlay', false)
         })
         .catch((err) => {
           console.dir(err)
-          this.getingData = false
+          this.$bus.$emit('show-overlay', false)
         })
     },
     updateOrder (order, event) {

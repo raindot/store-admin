@@ -3,7 +3,6 @@
     <dash-board
       @open-modal="openModal"
       @delete-item="deleteCoupon"
-      :loading="loading"
       :btn-loading="btnLoading"
       btn-create="新增優惠券"
     >
@@ -17,7 +16,7 @@
         <pagination :pagination="pagination" @emit-page="getCoupons"></pagination>
         <coupon-modal
           ref="CouponModal"
-          :loading="loading"
+          :loading="btnLoading"
           @save-coupon="saveCoupon">
         </coupon-modal>
       </template>
@@ -47,7 +46,6 @@ export default {
       },
       couponIdToBeDelete: '',
       btnLoading: false,
-      loading: false,
       columns: [
         {
           name: 'title',
@@ -75,7 +73,7 @@ export default {
   },
   methods: {
     getCoupons (page = 1) {
-      this.loading = true
+      this.$bus.$emit('show-overlay', true)
       const couponsPath = `${this.api}/${this.UUID}/admin/ec/coupons`
       this.axios
         .get(couponsPath, {
@@ -88,14 +86,14 @@ export default {
           console.log(res.data.data)
           this.coupons = res.data.data
           this.pagination = res.data.meta.pagination
-          this.loading = false
+          this.$bus.$emit('show-overlay', false)
         })
         .catch(err => {
           console.dir(err)
           if (err.request.status === 401) {
             alert('請先登入')
           }
-          this.loading = false
+          this.$bus.$emit('show-overlay', false)
         })
     },
     openModal ({ item: coupon, isNew }) {
@@ -122,7 +120,7 @@ export default {
     },
     saveCoupon ({ coupon, isNew }) {
       console.log('save coupon', coupon, isNew)
-      this.loading = true
+      this.btnLoading = true
       let apiPath = ''
       let httpMethod = ''
       if (isNew) {
@@ -134,12 +132,12 @@ export default {
       }
       this.axios({ method: httpMethod, url: apiPath, data: coupon }).then(res => {
         console.log(res)
-        this.loading = false
+        this.btnLoading = false
         this.getCoupons()
         this.$bvModal.hide('coupon-modal')
       }).catch(err => {
         console.dir(err)
-        this.loading = false
+        this.btnLoading = false
         this.$bvModal.hide('coupon-modal')
         alert('儲存失敗，請洽管理員')
       })

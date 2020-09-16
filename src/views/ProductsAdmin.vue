@@ -3,7 +3,6 @@
     <dash-board
       @open-modal="openModal"
       @delete-item="deleteProduct"
-      :loading="loading"
       :btn-loading="btnLoading"
       btn-create="新增產品"
     >
@@ -17,50 +16,11 @@
         <pagination :pagination="pagination" @emit-page="getProducts"></pagination>
         <product-modal
           ref="productModal"
-          :loading="loading"
+          :loading="btnLoading"
           @save-product="saveProduct">
         </product-modal>
       </template>
     </dash-board>
-    <!-- <div class="container mt-3">
-      <div v-if="loading" class="d-flex">
-        <div class="spinner-border mx-auto" role="status">
-          <span class="sr-only">Loading...</span>
-        </div>
-      </div>
-      <div v-else class="col mx-auto text-center mx-auto">
-        <div class="text-right">
-          <button @click="openModal(null, 'isNew')" class="add-new-product btn btn-primary" data-toggle="modal" data-target="#product-modal">新增商品</button>
-        </div>
-        <products
-          :products="products"
-          @open-modal="openModal"
-          @delete-product=";(function(){productIdToBeDelete = $event; $bvModal.show('confirm-delete')})()">
-        </products>
-        <pagination :pagination="pagination" @emit-page="getProducts"></pagination>
-      </div>
-      <product-modal
-        ref="productModal"
-        :loading="loading"
-        @save-product="saveProduct">
-      </product-modal>
-      <b-modal id="confirm-delete" hide-footer>
-        <template v-slot:modal-title>
-          刪除確認
-        </template>
-        <div class="d-block text-center">
-          <h3>確認刪除這個商品嗎？</h3>
-        </div>
-        <div class="d-flex justify-content-end">
-          <b-button v-show="btnLoading" variant="primary" disabled>
-            <b-spinner small></b-spinner>
-            <span>Loading...</span>
-          </b-button>
-          <b-button v-show="!btnLoading" variant="primary" class="mt-3" @click="$bvModal.hide('confirm-delete')">取消</b-button>
-          <b-button v-show="!btnLoading" variant="primary" class="mt-3 ml-3" @click="deleteProduct">確定</b-button>
-        </div>
-      </b-modal>
-    </div> -->
   </div>
 </template>
 
@@ -68,7 +28,6 @@
 import DashBoard from '@/components/DashBoard.vue'
 import ListTable from '@/components/ListTable.vue'
 import ProductModal from '@/components/ProductModal.vue'
-// import Products from '@/components/Products.vue'
 import Pagination from '@/components/Pagination.vue'
 export default {
   data () {
@@ -86,7 +45,6 @@ export default {
       },
       productIdToBeDelete: '',
       btnLoading: false,
-      loading: false,
       columns: [
         {
           name: 'category',
@@ -118,7 +76,7 @@ export default {
   },
   methods: {
     getProducts (page = 1) {
-      this.loading = true
+      this.$bus.$emit('show-overlay', true)
       const productsPath = `${this.api}/${this.UUID}/admin/ec/products`
       this.axios
         .get(productsPath, {
@@ -131,14 +89,14 @@ export default {
           console.log(res.data.meta.pagination)
           this.products = res.data.data
           this.pagination = res.data.meta.pagination
-          this.loading = false
+          this.$bus.$emit('show-overlay', false)
         })
         .catch(err => {
           console.dir(err)
           if (err.request.status === 401) {
             alert('請先登入')
           }
-          this.loading = false
+          this.$bus.$emit('show-overlay', false)
         })
     },
     openModal ({ item: product, isNew }) {
@@ -161,7 +119,7 @@ export default {
       }
     },
     saveProduct ({ product, isNew }) {
-      this.loading = true
+      this.btnLoading = true
       let apiPath = ''
       let httpMethod = ''
       if (isNew) {
@@ -173,12 +131,14 @@ export default {
       }
       this.axios({ method: httpMethod, url: apiPath, data: product }).then(res => {
         // $('#product-modal').modal('hide')
-        this.loading = false
+        this.$refs.productModal.isNew = false
+        this.btnLoading = false
         this.getProducts()
         this.$bvModal.hide('product-modal')
       }).catch(err => {
         console.log(err)
-        this.loading = false
+        this.$refs.productModal.isNew = false
+        this.btnLoading = false
         this.$bvModal.hide('product-modal')
         alert('儲存失敗，請洽管理員')
       })

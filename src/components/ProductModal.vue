@@ -1,24 +1,9 @@
 <template>
-  <!-- <div
-    class="modal fade"
-    id="product-modal"
-    tabindex="-1"
-    role="dialog"
-    aria-labelledby="exampleModalLabel"
-    aria-hidden="true"
-  > -->
   <b-modal id="product-modal" hide-footer>
     <template v-slot:modal-title>
       {{isNew? '新增產品': '編輯產品'}}
     </template>
-    <!-- <div class="modal-dialog"> -->
       <div class="modal-content">
-        <!-- <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLabel">{{isNew? '新增產品': '編輯產品'}}</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div> -->
         <div class="modal-body">
           <div class="form-group">
             <label for="title">標題</label>
@@ -152,7 +137,7 @@
             @click="$bvModal.hide('product-modal')"
           >取消</button>
           <button v-if="loading" type="button" class="btn btn-primary">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <i class="fas fa-spinner fa-spin"/>
             儲存中...
           </button>
           <button v-else @click="saveProduct" type="button" class="btn btn-primary">確認</button>

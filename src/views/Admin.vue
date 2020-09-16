@@ -1,4 +1,5 @@
 <template>
+<b-overlay :show="loading">
   <div class="container">
     <b-navbar toggleable="lg" variant="light">
         <b-navbar-brand href="#">後台</b-navbar-brand>
@@ -16,15 +17,20 @@
       </b-navbar>
     <router-view></router-view>
   </div>
+</b-overlay>
 </template>
 <script>
 export default {
   data () {
     return {
-      token: ''
+      token: '',
+      loading: false
     }
   },
   created () {
+    this.$bus.$on('show-overlay', status => {
+      this.loading = status
+    })
     const token = document.cookie.replace(/(?:(?:^|.*;\s*)AUTH_TOKEN\s*=\s*([^;]*).*$)|^.*$/, '$1')
     this.axios.defaults.headers.common.Authorization = `Bearer ${token}`
   }

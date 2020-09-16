@@ -87,7 +87,7 @@
             @click="$bvModal.hide('coupon-modal')"
           >取消</button>
           <button v-if="loading" type="button" class="btn btn-primary">
-            <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
+            <i class="fas fa-spinner fa-spin"/>
             儲存中...
           </button>
           <button v-else @click="saveCoupon" type="button" class="btn btn-primary">確認</button>

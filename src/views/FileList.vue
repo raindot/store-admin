@@ -18,13 +18,14 @@
         </tr>
       </tbody>
     </table>
+    <pagination :pagination="pagination" @emit-page="getFiles"></pagination>
     <confirm-delete :btnLoading="btnLoading" @delete-item="deleteFile"></confirm-delete>
   </div>
 </template>
 
 <script>
 import ConfirmDelete from '@/components/ConfirmDelete.vue'
-// import Pagination from '@/components/Pagination.vue'
+import Pagination from '@/components/Pagination.vue'
 
 export default {
   data () {
@@ -35,12 +36,11 @@ export default {
       pagination: {
         total: 0,
         count: 1,
-        per_page: 25,
+        per_page: 5,
         current_page: 1,
         total_pages: 1,
         links: []
       },
-      getingData: false,
       btnLoading: false,
       fileIdToDelete: ''
     }
@@ -49,11 +49,12 @@ export default {
     this.getFiles()
   },
   components: {
-    ConfirmDelete
+    ConfirmDelete,
+    Pagination
   },
   methods: {
     getFiles (page = 1) {
-      this.getingData = true
+      this.$bus.$emit('show-overlay', true)
       const storagePath = `${this.api}/${this.UUID}/admin/storage`
       this.axios
         .get(storagePath, {
@@ -66,11 +67,11 @@ export default {
           console.log(res.data)
           this.storage = res.data.data
           this.pagination = res.data.meta.pagination
-          this.getingData = false
+          this.$bus.$emit('show-overlay', false)
         })
         .catch((err) => {
           console.dir(err)
-          this.getingData = false
+          this.$bus.$emit('show-overlay', false)
         })
     },
     deleteFile () {
