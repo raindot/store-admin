@@ -1,13 +1,13 @@
 <template>
   <div class="container">
       <b-navbar toggleable="lg" variant="light">
-        <b-navbar-brand href="#">購物</b-navbar-brand>
+        <b-navbar-brand href="#">首頁</b-navbar-brand>
 
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
 
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item>產品列表</b-nav-item>
+            <b-nav-item to="">產品列表</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -16,6 +16,8 @@
           </b-navbar-nav>
         </b-collapse>
       </b-navbar>
+      <router-view></router-view>
+
   </div>
 </template>
 

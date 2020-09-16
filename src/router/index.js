@@ -8,19 +8,19 @@ const routes = [
   {
     path: '/',
     component: Home,
-    // redirect: '/products',
+    redirect: '/products',
     children: [
-      // {
-      //   path: 'products',
-      //   name: 'products',
-      //   // route level code-splitting
-      //   // this generates a separate chunk (about.[hash].js) for this route
-      //   // which is lazy-loaded when the route is visited.
-      //   component: () => import(/* webpackChunkName: "about" */ '../views/Products.vue'),
-      //   meta: {
-      //     needLogin: false
-      //   }
-      // },
+      {
+        path: 'products',
+        name: 'products',
+        // route level code-splitting
+        // this generates a separate chunk (about.[hash].js) for this route
+        // which is lazy-loaded when the route is visited.
+        component: () => import('../views/ProductList.vue'),
+        meta: {
+          needLogin: false
+        }
+      }
       // {
       //   path: 'about',
       //   component: () => import('../views/About.vue'),
