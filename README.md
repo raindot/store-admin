@@ -1,5 +1,8 @@
 # store-admin
 
+## DEMO
+[Demo site](https://raindot.github.io/store-admin)
+
 ## Project setup
 ```
 npm install
