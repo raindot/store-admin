@@ -1,14 +1,22 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
 
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
-    component: Home,
-    redirect: '/products',
+    component: () => import('../views/Home.vue'),
+    meta: {
+      needLogin: false
+    }
+  },
+  {
+    path: '/',
+    component: () => import('../views/Layout.vue'),
+    meta: {
+      needLogin: false
+    },
     children: [
       {
         path: 'products',
@@ -20,7 +28,15 @@ const routes = [
         meta: {
           needLogin: false
         }
-      }
+      },
+      // {
+      //   path: '',
+      //   name: 'home',
+      //   component: () => import('../views/Home.vue'),
+      //   meta: {
+      //     needLogin: false
+      //   }
+      // },
       // {
       //   path: 'about',
       //   component: () => import('../views/About.vue'),
@@ -28,20 +44,30 @@ const routes = [
       //     needLogin: false
       //   }
       // },
-      // {
-      //   path: 'cart',
-      //   component: () => import('../views/Cart.vue'),
-      //   meta: {
-      //     needLogin: false
-      //   }
-      // },
-      // {
-      //   path: 'product-detail/:id',
-      //   component: () => import('../views/ProductDetail.vue'),
-      //   meta: {
-      //     needLogin: false
-      //   }
-      // }
+      {
+        path: 'cart',
+        name: 'cart',
+        component: () => import('../views/Cart.vue'),
+        meta: {
+          needLogin: false
+        }
+      },
+      {
+        path: 'order',
+        name: 'order',
+        component: () => import('../views/Order.vue'),
+        meta: {
+          needLogin: false
+        }
+      },
+      {
+        path: 'product-detail/:id',
+        component: () => import('../views/ProductDetail.vue'),
+        props: true,
+        meta: {
+          needLogin: false
+        }
+      }
     ]
   },
   {

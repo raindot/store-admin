@@ -4,10 +4,15 @@ import Vue from 'vue'
 import './bus.js'
 import './plugins/axios'
 import './plugins/bootstrap-vue'
+import { ValidationObserver, ValidationProvider, configure, extend, localize } from 'vee-validate'
+import * as rules from 'vee-validate/dist/rules' // 規則檔案
+import zhTW from 'vee-validate/dist/locale/zh_TW.json'
+// import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm'
 import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
+import './assets/template.css'
 
 Vue.config.productionTip = false
 
@@ -16,6 +21,20 @@ new Vue({
   store,
   render: h => h(App)
 }).$mount('#app')
+
+// vee-validate
+Object.keys(rules).forEach((rule) => {
+  extend(rule, rules[rule])
+})
+localize('tw', zhTW)
+configure({
+  classes: {
+    valid: 'is-valid',
+    invalid: 'is-invalid'
+  }
+})
+Vue.component('ValidationObserver', ValidationObserver)
+Vue.component('ValidationProvider', ValidationProvider)
 
 const checkLogin = () => new Promise((resolve, reject) => {
   const token = document.cookie.replace(/(?:(?:^|.*;\s*)AUTH_TOKEN\s*=\s*([^;]*).*$)|^.*$/, '$1')
