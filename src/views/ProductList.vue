@@ -6,7 +6,7 @@
     </div> -->
     <div class="container mt-md-5 mt-3 mb-7">
       <div class="row">
-        <div class="col-md-4">
+        <!-- <div class="col-md-4">
           <div class="accordion border border-bottom border-top-0 border-left-0 border-right-0 mb-3" id="accordionExample">
             <div class="card border-0">
               <div class="card-header px-0 py-4 bg-white border border-bottom-0 border-top border-left-0 border-right-0" id="headingOne" data-toggle="collapse" data-target="#collapseOne">
@@ -30,14 +30,14 @@
               </div>
             </div>
           </div>
-        </div>
-        <div class="col-md-8">
+        </div> -->
+        <div class="col-md-10">
           <div class="row">
             <div v-for="product in products" :key="product.id" class="col-md-6">
               <div @click="goDetail(product.id)" class="cursor-pointer card border-0 mb-4 position-relative position-relative">
-                <img :src="product.imageUrl[0]" class="card-img-top rounded-0" alt="...">
+                <img :src="product.imageUrl[1]" class="card-img-top rounded-0" alt="...">
                 <a href="#" class="text-dark">
-                  <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i>
+                  <!-- <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i> -->
                 </a>
                 <div class="card-body p-0">
                   <h4 class="mb-0 mt-3"><router-link :to="`/product-detail/${product.id}`">{{product.title}}</router-link></h4>
@@ -47,7 +47,7 @@
               </div>
             </div>
           </div>
-          <nav class="d-flex justify-content-center">
+          <!-- <nav class="d-flex justify-content-center">
             <ul class="pagination">
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
@@ -63,7 +63,7 @@
                 </a>
               </li>
             </ul>
-          </nav>
+          </nav> -->
         </div>
       </div>
     </div>

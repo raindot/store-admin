@@ -3,7 +3,7 @@
     <div class="row">
       <div class="col-5">
         <div class="product-pic-zoom">
-          <img class="product-big-img img-fluid" :src="product.imageUrl[0]" alt />
+          <img v-for="(image, idx) in product.imageUrl" :key="idx" class="product-big-img img-fluid" :src="image" alt />
           <div class="zoom-icon">
             <i class="fa fa-search-plus"></i>
           </div>
@@ -34,7 +34,7 @@
               <i class="icon_heart_alt"></i>
             </a>
           </div>
-          <div>{{product.options.author}} 著</div>
+          <!-- <div>{{product.options.author}} 著</div> -->
           <!-- <div class="pd-rating">
             <i class="fa fa-star"></i>
             <i class="fa fa-star"></i>
@@ -100,9 +100,9 @@
             <!-- <li>
               <span>CATEGORIES</span>: More Accessories, Wallets & Cases
             </li> -->
-            <li>
+            <!-- <li>
               <span>TAGS</span>:Learning
-            </li>
+            </li> -->
           </ul>
           <div class="pd-share">
             <!-- <div class="p-code">Sku : 00012</div> -->

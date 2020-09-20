@@ -28,7 +28,6 @@
 import DashBoard from '@/components/DashBoard.vue'
 import ListTable from '@/components/ListTable.vue'
 import CouponModal from '@/components/CouponModal.vue'
-// import Products from '@/components/Products.vue'
 import Pagination from '@/components/Pagination.vue'
 export default {
   data () {

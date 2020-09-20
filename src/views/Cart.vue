@@ -6,7 +6,7 @@
             <h2 class="mt-2">Cart Detail</h2>
           </div>
           <div v-for="(item, idx) in cartList" :key="idx" class="d-flex mt-4 bg-light">
-            <img :src="item.product.imageUrl[0]" alt="" style="width: 120px; height: 120px; object-fit: cover;">
+            <img :src="item.product.imageUrl[1]" alt="" style="width: 120px; height: 120px; object-fit: cover;">
             <div class="w-100 p-3 position-relative">
               <a @click.prevent="deleteItem(item)" href="#" class="position-absolute" style="top: 16px; right: 16px;"><i class="fas fa-times"></i></a>
               <p class="mb-0 font-weight-bold">{{item.product.title}}</p>

@@ -29,21 +29,14 @@ const routes = [
           needLogin: false
         }
       },
-      // {
-      //   path: '',
-      //   name: 'home',
-      //   component: () => import('../views/Home.vue'),
-      //   meta: {
-      //     needLogin: false
-      //   }
-      // },
-      // {
-      //   path: 'about',
-      //   component: () => import('../views/About.vue'),
-      //   meta: {
-      //     needLogin: false
-      //   }
-      // },
+      {
+        path: 'about',
+        name: 'about',
+        component: () => import('../views/About.vue'),
+        meta: {
+          needLogin: false
+        }
+      },
       {
         path: 'cart',
         name: 'cart',
@@ -61,7 +54,16 @@ const routes = [
         }
       },
       {
+        path: 'checkout-success',
+        name: 'checkout-success',
+        component: () => import('../views/CheckoutSuccess.vue'),
+        meta: {
+          needLogin: false
+        }
+      },
+      {
         path: 'product-detail/:id',
+        name: 'product-detail',
         component: () => import('../views/ProductDetail.vue'),
         props: true,
         meta: {

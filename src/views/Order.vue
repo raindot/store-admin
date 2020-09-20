@@ -10,7 +10,7 @@
         <div class="border p-4 mb-4">
           <div v-for="(item, idx) in cartList" :key="idx" class="d-flex">
             <img
-              :src="item.product.imageUrl[0]"
+              :src="item.product.imageUrl[1]"
               alt
               class="mr-2"
               style="width: 48px; height: 48px; object-fit: cover"
@@ -200,6 +200,7 @@ export default {
       const apiOrder = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/orders`
       this.axios.post(apiOrder, this.orderInfo).then(res => {
         console.log(res, 'order created')
+        this.$router.push('checkout-success')
       }).catch(err => console.dir(err))
     }
   },
