@@ -1,17 +1,56 @@
 <template>
-  <div class="position-relative d-flex">
-      <div class="container d-flex flex-column" style="min-height: 100vh;">
-        <div class="row my-auto pb-7">
-          <div class="col-md-4 d-flex flex-column">
-            <div class="my-auto">
-              <h2>About</h2>
-              <p>I make web template for you.</p>
-            </div>
-          </div>
-        </div>
+      <section class="position-relative" style="overflow: hidden">
+      <img
+        class="position-absolute bg-layer2"
+        src="../assets/img/parallax-layer2.png"
+        alt=""
+      />
+      <img class="img-fluid" src="../assets/img/main-bg.png" alt="" />
+      <div class="position-absolute home-slogan">
+        <h1>I make website themes for you.</h1>
+        <p class="home-description">
+          Gorgeous designed for your store. Monthly Theme Added.
+        </p>
+        <p>
+          <b-button variant="outline-primary" to="/products" size="lg"
+            >Discover</b-button
+          >
+        </p>
       </div>
-      <div class="w-md-50 w-100 position-absolute opacity-1" style="z-index: -1; min-height: 100vh; right: 0; background-image: url(https://images.unsplash.com/photo-1567264022260-7b341af07b8b?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1350&q=80);
-      background-position: center center;">
-      </div>
-    </div>
+      <!-- <div class="home-slogan2 text-center mx-auto position-absolute">
+        <strong>SIX YEARS Of WOW</strong> for going through in Shopify platform,
+        listening all of customers’ desires as well as catching up the trends to
+        combine everything what clients need.
+      </div> -->
+    </section>
 </template>
+
+<style lang="scss" scoped>
+.bg-layer2 {
+  top: 0%;
+  left: 24%;
+  transform: scale(1);
+  z-index: -1;
+}
+
+.home-slogan {
+  top: 31%;
+  left: 4%;
+}
+
+.home-description {
+  color: #8b919f;
+  font-size: 24px;
+}
+.home-slogan2 {
+  bottom: 50px;
+  left: 25%;
+  font-size: 24px;
+  width: 60%;
+}
+.home-icon {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+</style>
