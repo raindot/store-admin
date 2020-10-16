@@ -1,135 +1,177 @@
 <template>
   <div>
-    <div class="container">
-      <div class="position-relative">
-        <div
-          class="position-absolute"
-          style="top:0; bottom:0; left:0; right:0; background-image: url(https://images.unsplash.com/photo-1519657635301-68bb60c798f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1346&q=80);
-        background-position: center center; opacity: 1;"
-        ></div>
-        <div class="container d-flex flex-column" style="min-height: 100vh;">
-          <nav class="navbar navbar-expand navbar-light">
-            <router-link to="/" class="navbar-brand">徜徉水族</router-link>
-            <div class="justify-content-end" id="navbarNavAltMarkup">
-              <div class="navbar-nav">
-                <router-link to="/about" class="nav-item nav-link mr-4">About</router-link>
-                <router-link to="/products" class="nav-item nav-link mr-4">Product</router-link>
-                <router-link to="/cart" class="nav-item nav-link">
-                  <i class="fas fa-shopping-cart"></i>
-                </router-link>
-              </div>
-            </div>
-          </nav>
-          <div class="row justify-content-center my-auto">
-            <div class="col-md-4 text-center">
-              <h2 class="text-light text-nowrap">打造你的水底小世界</h2>
-              <p
-                class="text-muted mb-0"
-              >我們提供最高品質的水族用品</p>
-              <router-link to="/products" class="btn btn-dark rounded-0 mt-6">購物去</router-link>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="container">
-        <div class="row mt-5">
-          <div v-for="product in displayProduct" :key="product.id" class="col-md-4 mt-md-4">
-            <div class="card border-0 mb-4">
-              <router-link :to="{ name: 'product-detail', params: { id: product.id }}">
-                <img
-                  :src="product.imageUrl[1]"
-                  class="card-img-top rounded-0"
-                  alt="..."
-                />
-              </router-link>
-              <div class="card-body text-center">
-                <h5>{{product.title}}</h5>
-                <div class="d-flex justify-content-between">
-                  <p class="card-text text-muted mb-0">
-                    {{product.description}}
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="bg-light mt-5">
-        <div class="container">
-          <b-carousel
-            id="carousel-1"
-            :interval="4000"
-            controls
-            indicators
-            background="#f2f2f2"
-            img-width="1024"
-            img-height="380"
-            style="text-shadow: 1px 1px 2px #333;"
-          >
-            <b-carousel-slide caption="我們提供更多元化的產品選擇" img-blank img-alt="Blank image">
-              <div>
-                讓您不必煩惱
-              </div>
-            </b-carousel-slide>
-          </b-carousel>
-        </div>
-      </div>
-      <div class="container my-7">
-        <div class="row">
-          <div class="col-md-6">
-            <img
-              src="https://images.unsplash.com/photo-1503449750664-33ec9c22420c?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1353&q=80"
-              alt
-              class="img-fluid"
-            />
-          </div>
-          <div class="col-md-4 m-auto text-center">
-            <h4 class="mt-4">專業的水族材料</h4>
-            <p
-              class="text-muted"
-            >專賣水族材料,提供魚缸設計及特殊訂製,另有定期維護方案，歡迎到店詢問各式問題</p>
-          </div>
-        </div>
-        <div class="row flex-row-reverse justify-content-between mt-4">
-          <div class="col-md-6">
-            <img
-              src="https://images.unsplash.com/photo-1584881460925-be7b0ab68b92?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1351&q=80"
-              alt
-              class="img-fluid"
-            />
-          </div>
-          <div class="col-md-4 m-auto text-center">
-            <h4 class="mt-4">超白玻璃缸</h4>
-            <p
-              class="text-muted"
-            >全強化玻璃系列-上架中</p>
-          </div>
-        </div>
-      </div>
-    <the-footer></the-footer>
+    <div>
+      <b-navbar toggleable="lg">
+        <b-navbar-brand href="#">Y's</b-navbar-brand>
+        <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
+        <b-collapse id="nav-collapse" is-nav>
+          <b-navbar-nav>
+            <b-nav-item to="/products">Showcase</b-nav-item>
+            <b-nav-item href="#">About</b-nav-item>
+          </b-navbar-nav>
+
+          <!-- Right aligned nav items -->
+          <b-navbar-nav class="ml-auto d-flex align-items-center">
+            <cart-count></cart-count>
+            <b-nav-item-dropdown right>
+              <!-- Using 'button-content' slot -->
+              <template v-slot:button-content>
+                <em>User</em>
+              </template>
+              <b-dropdown-item href="#">Admin</b-dropdown-item>
+              <b-dropdown-item href="#"> </b-dropdown-item>
+            </b-nav-item-dropdown>
+          </b-navbar-nav>
+        </b-collapse>
+      </b-navbar>
     </div>
+    <section class="position-relative" style="overflow: hidden">
+      <img
+        class="position-absolute bg-layer2"
+        src="../assets/img/parallax-layer2.png"
+        alt=""
+      />
+      <img class="img-fluid" src="../assets/img/main-bg.png" alt="" />
+      <div class="position-absolute home-slogan">
+        <h1>Creative multi-purpose shopify theme</h1>
+        <p class="home-description">
+          Gorgeous designed for your store. Monthly Theme Added.
+        </p>
+        <p>
+          <b-button class="mr-4" variant="primary" size="lg">Contact</b-button>
+          <b-button variant="outline-primary" to="/products" size="lg"
+            >Discover</b-button
+          >
+        </p>
+      </div>
+      <div class="home-slogan2 text-center mx-auto position-absolute">
+        <strong>SIX YEARS Of WOW</strong> for going through in Shopify platform,
+        listening all of customers’ desires as well as catching up the trends to
+        combine everything what clients need.
+      </div>
+    </section>
+    <section class="container bg-transparent">
+      <div class="row py-4">
+        <div class="col-lg-4 col-md-6">
+          <div
+            class="home-icon mx-auto border border-dark rounded-circle text-center text-primary"
+          >
+            <i class="fas fa-heart"></i>
+          </div>
+          <h4 class="my-3 text-center">New Monthly Theme</h4>
+          <p class="text-muted">
+            New shopify theme will be monthly released, so that satisfying your
+            clients is not so rough anymore & keep your store looking fresh.
+          </p>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div
+            class="home-icon mx-auto border border-dark rounded-circle text-center text-primary"
+          >
+            <i class="far fa-star"></i>
+          </div>
+          <h4 class="my-3 text-center">Stunning Design</h4>
+          <p class="text-muted">
+            Want to increase your sales just in the first visit. Come to us &
+            you will see how miracle our flagship shopify themes are.
+          </p>
+        </div>
+        <div class="col-lg-4 col-md-6">
+          <div
+            class="home-icon mx-auto border border-dark rounded-circle text-center text-primary"
+          >
+            <i class="fas fa-cog"></i>
+          </div>
+          <h4 class="my-3 text-center">Easy to Use and Implement</h4>
+          <p class="text-muted">
+            We analyze, then support you the best methods for any necessary
+            processes or features make your website operate stably and smoothly.
+          </p>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <h1 class="text-center">Gorgeous Child Themes</h1>
+      <p class="text-muted text-center">
+        Gorgeous Child Themes. Monthly New Theme Added.
+      </p>
+      <div class="row">
+        <div
+          v-for="product in displayProduct"
+          :key="product.id"
+          class="col-lg-4 col-md-6 col-sm-12"
+        >
+          <b-card
+            no-body
+            tag="article"
+            class="mb-2 overflow-hidden cursor-pointer"
+          >
+            <b-card-img
+              :src="product.imageUrl[1]"
+              @click="goProductDetail(product.id)"
+              class="rounded-0"
+            ></b-card-img>
+            <b-card-body>
+              <b-card-title class="mt-3">{{ product.title }}</b-card-title>
+              <b-card-sub-title>{{ product.category }}</b-card-sub-title>
+              <b-card-text>
+                {{ product.description }}
+              </b-card-text>
+              <p class="d-flex justify-content-between">
+                <b-button
+                  href="#"
+                  variant="primary"
+                  @click="goProductDetail(product.id)"
+                  >Detail</b-button
+                >
+                <add-cart></add-cart>
+                <!-- <b-button variant="light"><i class="fas fa-cart-plus "></i></b-button> -->
+              </p>
+            </b-card-body>
+          </b-card>
+        </div>
+      </div>
+    </section>
+    <section class="px-5 py-4 mt-5" style="background-color: #dd4b69">
+      <h2>Contact me</h2>
+
+    </section>
+    <the-footer></the-footer>
   </div>
 </template>
 
 <script>
+import CartCount from '@/components/CartCount.vue'
+import AddCart from '@/components/AddCart.vue'
 import TheFooter from '@/components/TheFooter.vue'
 export default {
   data () {
     return {
       displayProductId: [
-        '21BTjmxHq99uJbE4Y2OD3EcTWYwmu93imRt1uRX3JU8yBrWgINGrS8KOa9wZXr3G',
+        'Qq2mUr8DuelvR2Ffu6SqeclezK27BQ17DXpCLLRWmmm9WtXcbcFAG7tOM8dTbqsM',
         'pVZcbrEpUnyKuaXDX3akiADUUDPT3yN0uK38xpgyKfq2Fa4rUoZRV5hIi9MlqDPI',
         'f5gNTdT0iRspGI6ZVwhNYY36DaMRWAJ7q18pdiRBkpKUu8842kjgxyINw2kpGdMq'
       ],
-      displayProduct: []
+      displayProduct: [],
+      form: {
+        email: '',
+        name: '',
+        message: ''
+      },
+      showForm: true
     }
   },
   components: {
+    CartCount,
+    AddCart,
     TheFooter
   },
   created () {
-    this.displayProductId.forEach(id => {
+    this.displayProductId.forEach((id) => {
       this.getProductDetail(id)
+    })
+    this.$bus.$on('show-overlay', (status) => {
+      this.loading = status
     })
   },
   methods: {
@@ -140,7 +182,55 @@ export default {
         const product = res.data.data
         this.displayProduct.push(product)
       })
+    },
+    goProductDetail (id) {
+      this.$router.push({ name: 'product-detail', params: { id: id } })
+    },
+    onSubmit (evt) {
+      evt.preventDefault()
+    },
+    onReset (evt) {
+      evt.preventDefault()
+      // Reset our form values
+      this.form.email = ''
+      this.form.name = ''
+      this.form.message = ''
+      // Trick to reset/clear native browser form validation state
+      this.showForm = false
+      this.$nextTick(() => {
+        this.showForm = true
+      })
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.bg-layer2 {
+  top: 0%;
+  left: 24%;
+  transform: scale(1);
+  z-index: -1;
+}
+
+.home-slogan {
+  top: 31%;
+  left: 4%;
+}
+
+.home-description {
+  color: #8b919f;
+  font-size: 24px;
+}
+.home-slogan2 {
+  bottom: 50px;
+  left: 25%;
+  font-size: 24px;
+  width: 60%;
+}
+.home-icon {
+  width: 50px;
+  height: 50px;
+  line-height: 50px;
+}
+</style>

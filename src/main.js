@@ -12,7 +12,8 @@ import App from './App.vue'
 import './registerServiceWorker'
 import router from './router'
 import store from './store'
-import './assets/template.css'
+// import './assets/template.css'
+import './assets/css/all.scss'
 
 Vue.config.productionTip = false
 

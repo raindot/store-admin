@@ -2,7 +2,7 @@
   <div class="footer bg-dark py-5">
     <div class="container">
       <div class="d-flex align-items-center justify-content-between text-white mb-md-7 mb-4">
-        <router-link class="text-white h4" to="/">徜徉水族</router-link>
+        <router-link class="text-white h4" to="/">Y's</router-link>
         <ul class="d-flex list-unstyled mb-0 h4">
           <li>
             <a href="#" class="text-white mx-3">

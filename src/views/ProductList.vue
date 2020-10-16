@@ -35,7 +35,7 @@
           <div class="row">
             <div v-for="product in products" :key="product.id" class="col-md-6">
               <div @click="goDetail(product.id)" class="cursor-pointer card border-0 mb-4 position-relative position-relative">
-                <img :src="product.imageUrl[1]" class="card-img-top rounded-0" alt="...">
+                <b-img-lazy :src="product.imageUrl[1]" v-bind="mainProps" class="card-img-top rounded-0" alt="..."></b-img-lazy>
                 <a href="#" class="text-dark">
                   <!-- <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i> -->
                 </a>
@@ -43,6 +43,10 @@
                   <h4 class="mb-0 mt-3"><router-link :to="`/product-detail/${product.id}`">{{product.title}}</router-link></h4>
                   <p class="card-text mb-0">NT${{product.price}} <span class="text-muted "><del>NT${{product.origin_price}}</del></span></p>
                   <p class="text-muted mt-3"></p>
+                  <p class="d-flex justify-content-between">
+                    <b-button href="#" variant="primary" @click="goDetail(product.id)">Detail</b-button>
+                    <b-button variant="light"><i class="fas fa-cart-plus "></i></b-button>
+                  </p>
                 </div>
               </div>
             </div>
@@ -77,7 +81,16 @@ export default {
       products: {},
       loading: false,
       click: null,
-      dismissCountDown: 0
+      dismissCountDown: 0,
+      mainProps: {
+        center: true,
+        fluidGrow: true,
+        blank: true,
+        blankColor: '#bbb',
+        width: 600,
+        height: 600,
+        class: 'my-5'
+      }
     }
   },
   created () {
@@ -85,18 +98,18 @@ export default {
   },
   methods: {
     getProducts () {
-      this.loading = true
+      this.$bus.$emit('show-overlay', true)
       const apiProducts = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`
       this.axios.get(apiProducts).then((res) => {
         this.products = res.data.data
-        this.loading = false
+        this.$bus.$emit('show-overlay', false)
       })
     },
     goDetail (id) {
       this.$router.push(`product-detail/${id}`)
     },
     addCart (id, idx) {
-      this.loading = true
+      this.$bus.$emit('show-overlay', true)
       this.click = idx
       const apiAddCart = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/shopping`
       this.axios
@@ -106,9 +119,9 @@ export default {
         })
         .then((res) => {
           console.log(res)
-          this.loading = false
+          this.$bus.$emit('show-overlay', false)
         }).catch(err => {
-          this.loading = false
+          this.$bus.$emit('show-overlay', false)
           console.log(err)
           this.showAlert()
         })

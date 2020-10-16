@@ -5,5 +5,7 @@
 </template>
 
 <style lang="scss">
-
+  .cursor-pointer {
+    cursor: pointer;
+  }
 </style>

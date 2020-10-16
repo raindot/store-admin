@@ -1,12 +1,9 @@
 <template>
   <div class="container products mt-5">
     <div class="row">
-      <div class="col-5">
+      <div class="col-7">
         <div class="product-pic-zoom">
           <img v-for="(image, idx) in product.imageUrl" :key="idx" class="product-big-img img-fluid" :src="image" alt />
-          <div class="zoom-icon">
-            <i class="fa fa-search-plus"></i>
-          </div>
         </div>
         <!-- <div class="product-thumbs">
           <div class="product-thumbs-track ps-slider owl-carousel">
@@ -25,7 +22,7 @@
           </div>
         </div> -->
       </div>
-      <div class="col-5">
+      <div class="col-4">
         <div class="product-details">
           <div class="pd-title">
             <span>{{product.category}}</span>
@@ -34,58 +31,18 @@
               <i class="icon_heart_alt"></i>
             </a>
           </div>
-          <!-- <div>{{product.options.author}} 著</div> -->
-          <!-- <div class="pd-rating">
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star"></i>
-            <i class="fa fa-star-o"></i>
-            <span>(5)</span>
-          </div> -->
           <div class="pd-desc">
             <p>
               {{product.content}}
             </p>
-            <h4>
-              ${{product.price}}
-              <del>{{product.origin_price}}</del>
-            </h4>
+            <div class="d-flex align-items-center">
+              <h4>${{product.price}}</h4>
+              <del style="font-size: 0.8rem;" class="ml-3 text-muted">${{product.origin_price}}</del>
+            </div>
           </div>
-          <!-- <div class="pd-color">
-            <h6>Color</h6>
-            <div class="pd-color-choose">
-              <div class="cc-item">
-                <input type="radio" id="cc-black" />
-                <label for="cc-black"></label>
-              </div>
-              <div class="cc-item">
-                <input type="radio" id="cc-yellow" />
-                <label for="cc-yellow" class="cc-yellow"></label>
-              </div>
-              <div class="cc-item">
-                <input type="radio" id="cc-violet" />
-                <label for="cc-violet" class="cc-violet"></label>
-              </div>
-            </div>
-          </div> -->
-          <!-- <div class="pd-size-choose">
-            <div class="sc-item">
-              <input type="radio" id="sm-size" />
-              <label for="sm-size">pdf</label>
-            </div>
-            <div class="sc-item">
-              <input type="radio" id="md-size" />
-              <label for="md-size">epub</label>
-            </div>
-            <div class="sc-item">
-              <input type="radio" id="lg-size" />
-              <label for="lg-size">mobi</label>
-            </div>
-          </div> -->
           <div class="quantity">
             <div class="pro-qty">
-              <input v-model="quantity" type="text"/>
+              <input v-model="quantity" type="number"/>
             </div>
             <a v-show="loading" href="#" class="primary-btn">
               <div class="spinner-border text-light" role="status">
@@ -93,19 +50,13 @@
                   </div>
                   Loading...
             </a>
-            <button v-show="!loading" @click.prevent="addCart" href="#" class="btn btn-dark btn-block py-2">Add To Cart</button>
+            <b-button @click.prevent="addCart" variant="primary" class="btn-block my-3">Add To Cart</b-button>
+            <b-button variant="secondary" class="btn-block my-3">Buy Now</b-button>
 
           </div>
           <ul class="pd-tags">
-            <!-- <li>
-              <span>CATEGORIES</span>: More Accessories, Wallets & Cases
-            </li> -->
-            <!-- <li>
-              <span>TAGS</span>:Learning
-            </li> -->
           </ul>
           <div class="pd-share">
-            <!-- <div class="p-code">Sku : 00012</div> -->
             <div class="pd-social">
               <a href="#">
                 <i class="ti-facebook"></i>
@@ -132,53 +83,6 @@
       已加入購物車
     </b-alert>
     </div>
-    <!-- <div class="container">
-      <div class="row">
-        <div class="col-md-4 agileinfo_single_left">
-          <img id="example" :src="product.imageUrl[0]" alt=" " class="img-fluid" />
-        </div>
-        <div class="col-md-8 agileinfo_single_right">
-          <h2>{{product.title}}</h2>
-          <div class="rating1">
-            <span class="starRating">
-              <input id="rating5" type="radio" name="rating" value="5" />
-              <label for="rating5">5</label>
-              <input id="rating4" type="radio" name="rating" value="4" />
-              <label for="rating4">4</label>
-              <input id="rating3" type="radio" name="rating" value="3" checked />
-              <label for="rating3">3</label>
-              <input id="rating2" type="radio" name="rating" value="2" />
-              <label for="rating2">2</label>
-              <input id="rating1" type="radio" name="rating" value="1" />
-              <label for="rating1">1</label>
-            </span>
-          </div>
-          <div class="w3agile_description">
-            <h4>Description :</h4>
-            <p>
-              {{product.description}}
-            </p>
-          </div>
-          <div class="snipcart-item block">
-            <div class="snipcart-thumb agileinfo_single_right_snipcart">
-              <h4 class="m-sing">
-                ${{product.price}}
-                <span>${{product.origin_price}}</span>
-              </h4>
-            </div>
-            <div class="snipcart-details d-flex align-items-center">
-              <div class="flex-fill">
-                <button @click="modifyCount(-1)" class="btn btn-outline-primary btn-sm">-</button>
-                <span class="px-2">{{ quantity }}</span>
-                <button @click="modifyCount(1)" class="btn btn-outline-primary btn-sm">+</button>
-              </div>
-              <input @click="addCart" style="width: 150px" type="submit" name="submit" value="Add to cart" class="button" />
-            </div>
-          </div>
-        </div>
-        <div class="clearfix"></div>
-      </div>
-    </div>-->
   </div>
 </template>
 
@@ -220,7 +124,7 @@ export default {
       }
     },
     addCart () {
-      this.loading = true
+      this.$bus.$emit('show-overlay', true)
       this.getCartList().then((cartList) => {
         console.log(cartList)
         const found = this.foundItem(cartList)
@@ -246,11 +150,11 @@ export default {
           this.showAlert()
           this.getCartList().then((newList) => {
             console.log(newList)
-            this.loading = false
+            this.$bus.$emit('show-overlay', false)
           })
         }).catch(err => {
           this.showAlert()
-          this.loading = false
+          this.$bus.$emit('show-overlay', false)
           console.log(err)
         })
       })
@@ -263,7 +167,9 @@ export default {
           .then((res) => {
             console.log(res)
             const newList = res.data.data
-            const count = res.data.meta.pagination.total
+            const count = newList.reduce((acc, crr) => {
+              return acc + crr.quantity
+            }, 0)
             this.$bus.$emit('updateCart', count)
             resolve(newList)
           })
