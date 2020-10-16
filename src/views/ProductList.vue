@@ -35,7 +35,7 @@
           <div class="row">
             <div v-for="product in products" :key="product.id" class="col-md-6">
               <div @click="goDetail(product.id)" class="cursor-pointer card border-0 mb-4 position-relative position-relative">
-                <b-img-lazy :src="product.imageUrl[1]" v-bind="mainProps" class="card-img-top rounded-0" alt="..."></b-img-lazy>
+                <b-img-lazy :src="product.imageUrl[0]" v-bind="mainProps" class="card-img-top rounded-0" alt="..."></b-img-lazy>
                 <a href="#" class="text-dark">
                   <!-- <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i> -->
                 </a>
