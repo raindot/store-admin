@@ -4,8 +4,8 @@
         <div class="row my-auto pb-7">
           <div class="col-md-4 d-flex flex-column">
             <div class="my-auto">
-              <h2>品牌故事</h2>
-              <p>徜徉水族以水族用品批發為主要業務，擁有完整的水族商品體系、精密的北、中、南銷售通路，能提供快速的售後服務，專業的經營團隊不斷開發創新，提供水族愛好者所需求的產品。</p>
+              <h2>About</h2>
+              <p>I make web template for you.</p>
             </div>
           </div>
         </div>

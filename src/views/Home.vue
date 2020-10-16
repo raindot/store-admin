@@ -7,7 +7,7 @@
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
             <b-nav-item to="/products">Showcase</b-nav-item>
-            <b-nav-item href="#">About</b-nav-item>
+            <b-nav-item to="/about">About</b-nav-item>
           </b-navbar-nav>
 
           <!-- Right aligned nav items -->
@@ -18,8 +18,8 @@
               <template v-slot:button-content>
                 <em>User</em>
               </template>
-              <b-dropdown-item href="#">Admin</b-dropdown-item>
-              <b-dropdown-item href="#"> </b-dropdown-item>
+              <b-dropdown-item to="/admin/products">Admin</b-dropdown-item>
+              <!-- <b-dropdown-item href="#"> </b-dropdown-item> -->
             </b-nav-item-dropdown>
           </b-navbar-nav>
         </b-collapse>
@@ -107,7 +107,7 @@
             class="mb-2 overflow-hidden cursor-pointer"
           >
             <b-card-img
-              :src="product.imageUrl[1]"
+              :src="product.imageUrl[0]"
               @click="goProductDetail(product.id)"
               class="rounded-0"
             ></b-card-img>
@@ -149,8 +149,7 @@ export default {
     return {
       displayProductId: [
         'Qq2mUr8DuelvR2Ffu6SqeclezK27BQ17DXpCLLRWmmm9WtXcbcFAG7tOM8dTbqsM',
-        'pVZcbrEpUnyKuaXDX3akiADUUDPT3yN0uK38xpgyKfq2Fa4rUoZRV5hIi9MlqDPI',
-        'f5gNTdT0iRspGI6ZVwhNYY36DaMRWAJ7q18pdiRBkpKUu8842kjgxyINw2kpGdMq'
+        'J015FOZcDC6f7hwkqoQo368vRgzOw4h9IuXg553hTDnoXwThc6kx6SHmyBRQtkpk'
       ],
       displayProduct: [],
       form: {

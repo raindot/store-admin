@@ -111,12 +111,15 @@
               @change="uploadFile"
             >
           </div>
-          <img
-            v-for="img in tempProduct.imageUrl"
-            :key="img"
-            class="col-md-6 img-fluid"
-            :src="img"
-          >
+          <div v-for="(img, idx) in tempProduct.imageUrl"
+              :key="img"
+              class="px-2 py-2 mx-2 my-2 d-inline-block position-relative border">
+            <b-button pill variant="danger" @click="deleteImage(idx)" class="text-light px-2 py-1 position-absolute" style="left: 10px; bottom: 10px; z-index: 1000;" size="sm"><i class="fas fa-trash-alt"></i></b-button>
+            <img
+              class="col-md-6 img-fluid"
+              :src="img"
+            >
+          </div>
           <div class="form-group">
             <div class="form-check">
               <input
@@ -134,7 +137,7 @@
             :disabled="loading"
             type="button"
             class="btn btn-secondary"
-            @click="$bvModal.hide('product-modal')"
+            @click="(function(){$bvModal.hide('product-modal'); $emit('hide-modal')}())"
           >取消</button>
           <button v-if="loading" type="button" class="btn btn-primary">
             <i class="fas fa-spinner fa-spin"/>
@@ -190,13 +193,20 @@ export default {
         this.fileUploading = false
 
         if (res.status === 200) {
-          this.tempProduct.imageUrl.push(res.data.data.path)
+          if (!this.tempProduct.imageUrl[0]) {
+            this.$set(this.tempProduct.imageUrl, '0', res.data.data.path)
+          } else {
+            this.tempProduct.imageUrl.push(res.data.data.path)
+          }
         }
       }).catch((err) => {
         console.log(err)
         // alert('上傳失敗，檔案大小不能超過2MB')
         this.status.fileUploading = false
       })
+    },
+    deleteImage (idx) {
+      this.tempProduct.imageUrl.splice(idx, 1)
     }
   }
 

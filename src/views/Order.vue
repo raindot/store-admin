@@ -10,7 +10,7 @@
         <div class="border p-4 mb-4">
           <div v-for="(item, idx) in cartList" :key="idx" class="d-flex">
             <img
-              :src="item.product.imageUrl[1]"
+              :src="item.product.imageUrl[0]"
               alt
               class="mr-2"
               style="width: 48px; height: 48px; object-fit: cover"

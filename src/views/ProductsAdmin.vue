@@ -17,6 +17,7 @@
         <product-modal
           ref="productModal"
           :loading="btnLoading"
+          @hide-modal="getProducts"
           @save-product="saveProduct">
         </product-modal>
       </template>
@@ -86,7 +87,6 @@ export default {
           }
         })
         .then((res) => {
-          console.log(res.data.meta.pagination)
           this.products = res.data.data
           this.pagination = res.data.meta.pagination
           this.$bus.$emit('show-overlay', false)
