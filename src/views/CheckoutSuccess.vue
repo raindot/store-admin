@@ -2,9 +2,9 @@
   <div>
     <div class="card">
         <div class="card-body">
-          <div class="py-5">Complete Order</div>
+          <div class="py-5">Thank you for choosing us!</div>
           <div>
-            <a href="index.html" class="btn btn-primary">Grab another product ?</a>
+            <router-link to="/" class="btn btn-primary">Grab another product ?</router-link>
           </div>
         </div>
       </div>
