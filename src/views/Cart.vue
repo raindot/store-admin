@@ -30,7 +30,7 @@
               <p class="mb-0 h4 font-weight-bold">Total</p>
               <p class="mb-0 h4 font-weight-bold">NT${{total}}</p>
             </div>
-            <router-link to="/order" class="btn btn-primary btn-block mt-4 rounded-0 py-3">Checkout</router-link>
+            <router-link to="/order" class="btn btn-primary btn-block mt-4 rounded-0 py-3">Process checkout</router-link>
           </div>
           <b-card v-show="cartList.length === 0">
             Empty in the cart.

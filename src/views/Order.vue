@@ -155,7 +155,7 @@
           <router-link to="/cart" class="text-dark mt-md-0 mt-3">
             <i class="fas fa-chevron-left mr-2"></i>Back
           </router-link>
-          <button type="submit" class="btn btn-dark py-3 px-7">Checkout</button>
+          <b-button type="submit" variant="primary" class="py-3 px-7">Checkout</b-button>
         </div>
           </form>
         </validation-observer>
