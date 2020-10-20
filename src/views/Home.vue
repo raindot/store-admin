@@ -134,7 +134,46 @@
     </section>
     <section id="contactus" class="px-5 py-4 mt-5" style="background-color: #dd4b69">
       <h2>Contact us</h2>
+      <b-form @submit="onSubmit" @reset="onReset" v-if="showForm">
+      <b-form-group
+        id="input-group-1"
+        label="Email address:"
+        label-for="input-1"
+      >
+        <b-form-input
+          id="input-1"
+          v-model="form.email"
+          type="email"
+          required
+          placeholder="Enter email"
+        ></b-form-input>
+      </b-form-group>
 
+      <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+        <b-form-input
+          id="input-2"
+          v-model="form.name"
+          required
+          placeholder="Enter name"
+        ></b-form-input>
+      </b-form-group>
+      <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+        <b-form-textarea
+          id="textarea"
+          v-model="form.message"
+          placeholder="How can we help you?"
+          rows="3"
+          max-rows="6"
+        ></b-form-textarea>
+      </b-form-group>
+      <b-button type="reset" class="mr-2" variant="secondary">Reset</b-button>
+      <b-button type="submit" variant="light">Submit</b-button>
+    </b-form>
+    <b-card v-else title="Thank you">
+      <b-card-body>
+        Thank you for your message, we'll contact you soon.
+      </b-card-body>
+    </b-card>
     </section>
     <the-footer></the-footer>
   </div>
@@ -183,7 +222,7 @@ export default {
     getProductDetail (id) {
       const apiProduct = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/product/${id}`
       this.axios.get(apiProduct).then((res) => {
-        console.log(res)
+        // console.log(res)
         const product = res.data.data
         this.displayProduct.push(product)
       })
@@ -193,6 +232,7 @@ export default {
     },
     onSubmit (evt) {
       evt.preventDefault()
+      this.showForm = false
     },
     onReset (evt) {
       evt.preventDefault()

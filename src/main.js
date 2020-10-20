@@ -4,9 +4,9 @@ import Vue from 'vue'
 import './bus.js'
 import './plugins/axios'
 import './plugins/bootstrap-vue'
-import { ValidationObserver, ValidationProvider, configure, extend, localize } from 'vee-validate'
+import { ValidationObserver, ValidationProvider, configure, extend } from 'vee-validate'
 import * as rules from 'vee-validate/dist/rules' // 規則檔案
-import zhTW from 'vee-validate/dist/locale/zh_TW.json'
+// import zhTW from 'vee-validate/dist/locale/zh_TW.json'
 // import { ValidationProvider } from 'vee-validate/dist/vee-validate.full.esm'
 import App from './App.vue'
 import './registerServiceWorker'
@@ -27,7 +27,7 @@ new Vue({
 Object.keys(rules).forEach((rule) => {
   extend(rule, rules[rule])
 })
-localize('tw', zhTW)
+// localize('tw', zhTW)
 configure({
   classes: {
     valid: 'is-valid',

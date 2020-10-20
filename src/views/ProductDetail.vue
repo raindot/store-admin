@@ -2,10 +2,10 @@
   <div class="container products mt-5">
     <div>All items / <router-link to="/products">Web Templates</router-link> / <router-link :to="`/product-detail/${id}`">{{product.category}}</router-link></div>
     <div class="row mt-3">
-      <div class="col-7">
+      <div class="col-sm-12 col-md-6">
         <div class="product-pic-zoom position-relative">
           <img v-b-modal.large-img v-for="(image, idx) in product.imageUrl" :key="idx" class="product-big-img img-fluid" :src="image" alt />
-          <b-button v-b-modal.large-img variant="transparant" class="text-muted position-absolute" style="bottom: 0; right: 0;">
+          <b-button v-b-modal.large-img variant="light" pill class="text-dark position-absolute" style="bottom: 0; right: 0;">
             <i class="fas fa-search-plus"></i>
           </b-button>
           <b-modal id="large-img" size="xl" centered ok-only :title="product.title">
@@ -41,7 +41,7 @@
           </div>
         </div> -->
       </div>
-      <div class="col-4">
+      <div class="col-sm-12 col-md-6">
         <div class="product-details">
           <div class="pd-title">
             <span>{{product.category}}</span>

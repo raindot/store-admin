@@ -5,6 +5,7 @@
       <h2 class="font-weight-bold">Lorem ipsum.</h2>
     </div> -->
     <div class="container mt-md-5 mt-3 mb-7">
+      <h3>All Themes</h3>
       <!-- <div class="col-md-4">
           <div class="accordion border border-bottom border-top-0 border-left-0 border-right-0 mb-3" id="accordionExample">
             <div class="card border-0">
