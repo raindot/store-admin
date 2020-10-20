@@ -157,7 +157,7 @@
           placeholder="Enter name"
         ></b-form-input>
       </b-form-group>
-      <b-form-group id="input-group-2" label="Your Name:" label-for="input-2">
+      <b-form-group id="input-group-2" label="Message:" label-for="input-2">
         <b-form-textarea
           id="textarea"
           v-model="form.message"
