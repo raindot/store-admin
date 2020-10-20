@@ -68,11 +68,11 @@
               tag="div"
               v-slot="{ errors, classes }"
             >
-              <label for="name">收件人</label>
+              <label for="name">Name</label>
               <input
                 id="name"
                 type="text"
-                name="收件人姓名"
+                name="Name"
                 v-model="orderInfo.name"
                 class="form-control"
                 :class="classes"
@@ -103,11 +103,11 @@
               tag="div"
               v-slot="{ errors, classes }"
             >
-              <label for="tel">電話</label>
+              <label for="tel">Tel</label>
               <input
                 id="tel"
                 type="tel"
-                name="電話"
+                name="Tel"
                 v-model="orderInfo.tel"
                 class="form-control"
                 :class="classes"
@@ -120,11 +120,11 @@
               tag="div"
               v-slot="{ errors, classes }"
             >
-              <label for="address">收件地址</label>
+              <label for="address">Shipping address</label>
               <input
                 id="address"
                 type="text"
-                name="收件地址"
+                name="address"
                 v-model="orderInfo.address"
                 class="form-control"
                 :class="classes"
@@ -132,16 +132,16 @@
               <span class="invalid-feedback">{{ errors[0] }}</span>
             </validation-provider>
             <validation-provider rules="required" class="form-group" tag="div" v-slot="{ errors }">
-              <label for="pay">付款方式</label>
+              <label for="pay">Payment</label>
               <select id="pay" v-model="orderInfo.payment" class="custom-select">
                 <option value="ATM">ATM</option>
-                <option value="Credit">信用卡</option>
+                <option value="Credit">Credit</option>
                 <option value="ApplePay">Apple Pay</option>
               </select>
               <span class="invalid-feedback">{{ errors[0] }}</span>
             </validation-provider>
             <div class="form-group">
-              <label for="message">留言</label>
+              <label for="message">Messages:</label>
               <textarea v-model="orderInfo.message" class="form-control" id="message" rows="3"></textarea>
             </div>
             <!-- <button v-show="loading" class="btn btn-primary" type="button" disabled>
@@ -155,7 +155,7 @@
           <router-link to="/cart" class="text-dark mt-md-0 mt-3">
             <i class="fas fa-chevron-left mr-2"></i>Back
           </router-link>
-          <button type="submit" class="btn btn-dark py-3 px-7">結帳</button>
+          <button type="submit" class="btn btn-dark py-3 px-7">Checkout</button>
         </div>
           </form>
         </validation-observer>

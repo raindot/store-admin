@@ -1,12 +1,11 @@
 <template>
-  <div>
+  <div class="mb-5">
     <!-- <div class="position-relative d-flex align-items-center justify-content-center" style="min-height: 400px;">
       <div class="position-absolute" style="top:0; bottom: 0; left: 0; right: 0; background-image: url(https://images.unsplash.com/photo-1480399129128-2066acb5009e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1950&q=80); background-position: center center; opacity: 0.1;"></div>
       <h2 class="font-weight-bold">Lorem ipsum.</h2>
     </div> -->
     <div class="container mt-md-5 mt-3 mb-7">
-      <div class="row">
-        <!-- <div class="col-md-4">
+      <!-- <div class="col-md-4">
           <div class="accordion border border-bottom border-top-0 border-left-0 border-right-0 mb-3" id="accordionExample">
             <div class="card border-0">
               <div class="card-header px-0 py-4 bg-white border border-bottom-0 border-top border-left-0 border-right-0" id="headingOne" data-toggle="collapse" data-target="#collapseOne">
@@ -31,27 +30,57 @@
             </div>
           </div>
         </div> -->
-        <div class="col-md-10">
-          <div class="row">
-            <div v-for="product in products" :key="product.id" class="col-md-6">
-              <div @click="goDetail(product.id)" class="cursor-pointer card border-0 mb-4 position-relative position-relative">
-                <b-img-lazy :src="product.imageUrl[0]" v-bind="mainProps" class="card-img-top rounded-0" alt="..."></b-img-lazy>
-                <a href="#" class="text-dark">
-                  <!-- <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i> -->
-                </a>
-                <div class="card-body p-0">
-                  <h4 class="mb-0 mt-3"><router-link :to="`/product-detail/${product.id}`">{{product.title}}</router-link></h4>
-                  <p class="card-text mb-0">NT${{product.price}} <span class="text-muted "><del>NT${{product.origin_price}}</del></span></p>
-                  <p class="text-muted mt-3"></p>
-                  <p class="d-flex justify-content-between">
-                    <b-button href="#" variant="primary" @click="goDetail(product.id)">Detail</b-button>
-                    <b-button variant="light"><i class="fas fa-cart-plus "></i></b-button>
-                  </p>
-                </div>
-              </div>
+      <div class="row">
+        <div v-for="product in products" :key="product.id" class="col-md-6 col-lg-4">
+          <div
+            @click="goDetail(product.id)"
+            class="cursor-pointer card border-0 mb-4 position-relative position-relative"
+          >
+
+            <b-img-lazy
+              :src="product.imageUrl[0]"
+              v-bind="mainProps"
+              class="card-img-top rounded-0"
+              alt="..."
+            ></b-img-lazy>
+            <a href="#" class="text-dark">
+              <!-- <i class="far fa-heart position-absolute" style="right: 16px; top: 16px"></i> -->
+            </a>
+            <div class="card-body p-0">
+              <h4 class="mb-0 mt-3">
+                <router-link :to="`/product-detail/${product.id}`">{{
+                  product.title
+                }}</router-link>
+              </h4>
+              <p class="card-text mb-0">
+                NT${{ product.price }}
+                <span class="text-muted"
+                  ><del style="font-size: 0.6rem"
+                    >NT${{ product.origin_price }}</del
+                  ></span
+                >
+              </p>
+              <h6 class="text-muted">{{product.category}}</h6>
+
+              <p class="text-muted mt-3">
+                {{ chunckdContent(product.content) }}
+              </p>
+              <p class="d-flex justify-content-between">
+                <b-button
+                  href="#"
+                  variant="primary"
+                  @click="goDetail(product.id)"
+                  >Detail</b-button
+                >
+                <b-button variant="light"
+                  ><i class="fas fa-cart-plus"></i
+                ></b-button>
+              </p>
             </div>
           </div>
-          <!-- <nav class="d-flex justify-content-center">
+        </div>
+      </div>
+      <!-- <nav class="d-flex justify-content-center">
             <ul class="pagination">
               <li class="page-item">
                 <a class="page-link" href="#" aria-label="Previous">
@@ -68,8 +97,6 @@
               </li>
             </ul>
           </nav> -->
-        </div>
-      </div>
     </div>
   </div>
 </template>
@@ -89,7 +116,7 @@ export default {
         blankColor: '#bbb',
         width: 600,
         height: 600,
-        class: 'my-5'
+        class: 'my-2'
       }
     }
   },
@@ -120,7 +147,8 @@ export default {
         .then((res) => {
           console.log(res)
           this.$bus.$emit('show-overlay', false)
-        }).catch(err => {
+        })
+        .catch((err) => {
           this.$bus.$emit('show-overlay', false)
           console.log(err)
           this.showAlert()
@@ -134,13 +162,16 @@ export default {
     },
     loadingBtn (idx) {
       return this.loading && this.click === idx
+    },
+    chunckdContent (content) {
+      return content.substring(0, 100) + '...'
     }
   }
 }
 </script>
 
 <style lang="scss">
-  .cursor-pointer {
-    cursor: pointer;
-  }
+.cursor-pointer {
+  cursor: pointer;
+}
 </style>

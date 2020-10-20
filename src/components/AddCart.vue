@@ -17,6 +17,7 @@
 
 <script>
 export default {
+  props: ['id'],
   data () {
     return {
       product: {

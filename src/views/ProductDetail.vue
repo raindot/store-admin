@@ -1,9 +1,28 @@
 <template>
   <div class="container products mt-5">
-    <div class="row">
+    <div>All items / <router-link to="/products">Web Templates</router-link> / <router-link :to="`/product-detail/${id}`">{{product.category}}</router-link></div>
+    <div class="row mt-3">
       <div class="col-7">
-        <div class="product-pic-zoom">
-          <img v-for="(image, idx) in product.imageUrl" :key="idx" class="product-big-img img-fluid" :src="image" alt />
+        <div class="product-pic-zoom position-relative">
+          <img v-b-modal.large-img v-for="(image, idx) in product.imageUrl" :key="idx" class="product-big-img img-fluid" :src="image" alt />
+          <b-button v-b-modal.large-img variant="transparant" class="text-muted position-absolute" style="bottom: 0; right: 0;">
+            <i class="fas fa-search-plus"></i>
+          </b-button>
+          <b-modal id="large-img" size="xl" centered ok-only :title="product.title">
+            <b-carousel
+              id="carousel-fade"
+              style="text-shadow: 0px 0px 2px #000"
+              fade
+              indicators
+              controls
+            >
+              <b-carousel-slide
+                v-for="img in product.imageUrl"
+                :key="img"
+                :img-src="img"
+              ></b-carousel-slide>
+            </b-carousel>
+          </b-modal>
         </div>
         <!-- <div class="product-thumbs">
           <div class="product-thumbs-track ps-slider owl-carousel">
@@ -41,9 +60,9 @@
             </div>
           </div>
           <div class="quantity">
-            <div class="pro-qty">
+            <!-- <div class="pro-qty">
               <input v-model="quantity" type="number"/>
-            </div>
+            </div> -->
             <a v-show="loading" href="#" class="primary-btn">
               <div class="spinner-border text-light" role="status">
                     <span class="sr-only"></span>
@@ -51,7 +70,7 @@
                   Loading...
             </a>
             <b-button @click.prevent="addCart" variant="primary" class="btn-block my-3">Add To Cart</b-button>
-            <b-button variant="secondary" class="btn-block my-3">Buy Now</b-button>
+            <!-- <b-button variant="secondary" class="btn-block my-3">Buy Now</b-button> -->
 
           </div>
           <ul class="pd-tags">

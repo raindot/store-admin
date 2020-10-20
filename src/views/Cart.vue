@@ -27,14 +27,14 @@
               </div>
             </div>
             <div class="d-flex justify-content-between mt-4">
-              <p class="mb-0 h4 font-weight-bold">總計</p>
+              <p class="mb-0 h4 font-weight-bold">Total</p>
               <p class="mb-0 h4 font-weight-bold">NT${{total}}</p>
             </div>
-            <router-link to="/order" class="btn btn-primary btn-block mt-4 rounded-0 py-3">結帳</router-link>
+            <router-link to="/order" class="btn btn-primary btn-block mt-4 rounded-0 py-3">Checkout</router-link>
           </div>
           <b-card v-show="cartList.length === 0">
-            購物車內沒有商品哦！
-            <router-link to="/products" class="btn btn-primary btn-block mt-4 rounded-0 py-3">再去逛逛</router-link>
+            Empty in the cart.
+            <router-link to="/products" class="btn btn-primary btn-block mt-4 rounded-0 py-3">Go shopping!</router-link>
 
           </b-card>
         </div>

@@ -2,7 +2,7 @@
   <div class="footer bg-dark py-5">
     <div class="container">
       <div class="d-flex align-items-center justify-content-between text-white mb-md-7 mb-4">
-        <router-link class="text-white h4" to="/">Y's</router-link>
+        <router-link class="text-white h4" to="/">Y's Lab</router-link>
         <ul class="d-flex list-unstyled mb-0 h4">
           <li>
             <a href="#" class="text-white mx-3">
@@ -28,7 +28,7 @@
           <p class="mb-0">02-3456-7890</p>
           <p class="mb-0">service@mail.com</p>
         </div>
-        <p class="mb-0">本網站僅供展示使用，無商業用途</p>
+        <p class="mb-0">This website is only for personal practice.<br/> No commercial use.<br/> All template product from <a href="https://elements.envato.com/">envato elements</a></p>
       </div>
     </div>
   </div>
