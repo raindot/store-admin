@@ -19,7 +19,7 @@ const routes = [
     },
     children: [
       {
-        path: 'products',
+        path: 'products/:category?',
         name: 'products',
         // route level code-splitting
         // this generates a separate chunk (about.[hash].js) for this route
@@ -27,7 +27,8 @@ const routes = [
         component: () => import('../views/ProductList.vue'),
         meta: {
           needLogin: false
-        }
+        },
+        props: true
       },
       {
         path: 'about',

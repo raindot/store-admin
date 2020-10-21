@@ -109,9 +109,10 @@
 
 <script>
 export default {
+  props: ['category'],
   data () {
     return {
-      products: {},
+      products: [],
       loading: false,
       click: null,
       dismissCountDown: 0,
@@ -129,19 +130,26 @@ export default {
     }
   },
   created () {
-    this.getProducts()
+    this.getProducts().then(data => {
+      this.products = data
+      if (this.category) this.filterTerm = this.category
+    })
   },
   methods: {
     getProducts () {
       this.$bus.$emit('show-overlay', true)
       const apiProducts = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`
-      this.axios.get(apiProducts).then((res) => {
-        this.products = res.data.data
-        this.$bus.$emit('show-overlay', false)
+      return new Promise((resolve, reject) => {
+        this.axios.get(apiProducts).then((res) => {
+          this.$bus.$emit('show-overlay', false)
+          resolve(res.data.data)
+        }).catch(err => {
+          reject(err)
+        })
       })
     },
     goDetail (id) {
-      this.$router.push(`product-detail/${id}`)
+      this.$router.push(`/product-detail/${id}`)
     },
     addCart (id, idx) {
       this.$bus.$emit('show-overlay', true)
