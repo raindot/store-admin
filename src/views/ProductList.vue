@@ -5,7 +5,12 @@
       <h2 class="font-weight-bold">Lorem ipsum.</h2>
     </div> -->
     <div class="container mt-md-5 mt-3 mb-7">
-      <h3>All Themes</h3>
+      <h5>
+        <span v-for="(term, idx) in filter" :key="idx">
+          <span @click="filterTerm = term" class="cursor-pointer" :class="filterTerm === term ? 'text-primary': 'text-muted'">{{term}}</span>
+          <span v-show="(idx + 1) < filter.length"> | </span>
+        </span>
+      </h5>
       <!-- <div class="col-md-4">
           <div class="accordion border border-bottom border-top-0 border-left-0 border-right-0 mb-3" id="accordionExample">
             <div class="card border-0">
@@ -32,7 +37,7 @@
           </div>
         </div> -->
       <div class="row">
-        <div v-for="product in products" :key="product.id" class="col-md-6 col-lg-4">
+        <div v-for="product in filteredList" :key="product.id" class="col-md-6 col-lg-4">
           <div
             @click="goDetail(product.id)"
             class="cursor-pointer card border-0 mb-4 position-relative position-relative"
@@ -118,7 +123,9 @@ export default {
         width: 600,
         height: 600,
         class: 'my-2'
-      }
+      },
+      filter: ['All Themes', 'Multipurpose', 'Commercial', 'Admin', 'Landing Page'],
+      filterTerm: 'All Themes'
     }
   },
   created () {
@@ -166,6 +173,17 @@ export default {
     },
     chunckdContent (content) {
       return content.substring(0, 100) + '...'
+    }
+  },
+  computed: {
+    filteredList () {
+      if (this.filterTerm === 'All Themes') {
+        return this.products
+      } else {
+        return this.products.filter(product => {
+          return product.category === this.filterTerm
+        })
+      }
     }
   }
 }

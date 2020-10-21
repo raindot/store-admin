@@ -1,6 +1,6 @@
 <template>
   <div class="container products mt-5">
-    <div>All items / <router-link to="/products">Web Templates</router-link> / <router-link :to="`/product-detail/${id}`">{{product.category}}</router-link></div>
+    <div><router-link to="/products">Web Templates</router-link> / <router-link :to="`/product-detail/${id}`">{{product.category}}</router-link></div>
     <div class="row mt-3">
       <div class="col-sm-12 col-md-6">
         <div class="product-pic-zoom position-relative">
