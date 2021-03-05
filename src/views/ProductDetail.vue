@@ -1,6 +1,6 @@
 <template>
   <div class="container products mt-5 mb-5">
-    <div><router-link to="/products">Web Templates</router-link> / <router-link :to="`/products/${product.category}`">{{product.category}}</router-link></div>
+    <div><router-link to="/products">所有產品</router-link> / <router-link :to="`/products/${product.category}`">{{product.category}}</router-link></div>
     <div class="row mt-3">
       <div class="col-sm-12 col-md-6">
         <div class="product-pic-zoom position-relative">
@@ -51,7 +51,7 @@
             </a>
           </div>
           <div class="pd-desc">
-            <p>
+            <p style="white-space: pre-wrap;">
               {{product.content}}
             </p>
             <div class="d-flex align-items-center">

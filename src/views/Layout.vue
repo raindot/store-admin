@@ -3,11 +3,11 @@
     <b-overlay :show="loading" rounded="sm">
       <div class="container">
         <b-navbar toggleable="lg">
-          <b-navbar-brand to="/">Y's Lab</b-navbar-brand>
+          <b-navbar-brand to="/">Y＆J Pâtisserie</b-navbar-brand>
           <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
           <b-collapse id="nav-collapse" is-nav>
             <b-navbar-nav>
-              <b-nav-item :to="{ name: 'products'}">Showcase</b-nav-item>
+              <b-nav-item :to="{ name: 'products'}">Shopping</b-nav-item>
             </b-navbar-nav>
             <b-navbar-nav>
               <b-nav-item :to="{ name: 'about'}">About</b-nav-item>

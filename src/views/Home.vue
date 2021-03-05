@@ -2,13 +2,13 @@
 <b-overlay :show="loading" rounded="sm">
 
   <div>
-    <div>
+    <div class="container">
       <b-navbar toggleable="lg">
-        <b-navbar-brand href="#">Y's Lab</b-navbar-brand>
+        <b-navbar-brand href="#">Y＆J Pâtisserie</b-navbar-brand>
         <b-navbar-toggle target="nav-collapse"></b-navbar-toggle>
         <b-collapse id="nav-collapse" is-nav>
           <b-navbar-nav>
-            <b-nav-item to="/products">Showcase</b-nav-item>
+            <b-nav-item to="/products">Shopping</b-nav-item>
             <b-nav-item to="/about">About</b-nav-item>
           </b-navbar-nav>
 
@@ -29,24 +29,15 @@
         </b-collapse>
       </b-navbar>
     </div>
-    <section class="position-relative" style="overflow: hidden">
-      <img
-        class="position-absolute bg-layer2"
-        src="../assets/img/parallax-layer2.png"
-        alt=""
-      />
-      <img class="position-absolute bg-layer1" src="../assets/img/parallax-layer1.png" alt="">
-      <img class="img-fluid" src="../assets/img/main-bg.png" alt="" />
+    <section class="position-relative">
+      <img class="img-fluid" src="../assets/img/main-bg.jpeg" alt="" />
       <div class="position-absolute home-slogan">
-        <h1>Making Your Web WORK</h1>
+        <h1 class="home-slogan-h1">Y＆J Pâtisserie</h1>
         <p class="home-description">
-          We build fresh websites and amazing community solutions.
+          給你最溫暖的味道
         </p>
         <p>
-          <b-button href="#contactus" class="mr-4" variant="primary" size="lg">Contact</b-button>
-          <b-button variant="outline-primary" to="/products" size="lg"
-            >Discover</b-button
-          >
+          <b-button to="/products" class="mr-4" variant="primary" size="lg">Contact</b-button>
         </p>
       </div>
       <!-- <div class="home-slogan2 text-center mx-auto position-absolute">
@@ -61,9 +52,10 @@
           >
             <i class="fas fa-heart"></i>
           </div>
-          <h4 class="my-3 text-center">Community Solutions</h4>
+          <h4 class="my-3 text-center">嚴選的天然食材</h4>
           <p class="text-muted">
-            We are specialized in developing and running community platforms.Whether you want to engage the world or connect your staff online, we’ll build the right solution.
+            讓您每一口吃得安心又健康！
+            選用來自法國國家食品金牌獎的頂級原料，以吹毛求疵的研發精神，終於造就堆疊出極致的美味。
           </p>
         </div>
         <div class="col-lg-4 col-md-6">
@@ -72,28 +64,30 @@
           >
             <i class="far fa-star"></i>
           </div>
-          <h4 class="my-3 text-center">Web Dvelopment</h4>
+          <h4 class="my-3 text-center">多樣化的甜點選擇</h4>
           <p class="text-muted">
-            We will be at yourside through all stages of the development process. Our product range comprises Social Media applications, website, campaigning tools, webshops - you name it!
+            滿足顧客不同需求的味蕾
+            包括乳源的鮮甜、巧克力的苦甜，盡在其中
           </p>
         </div>
         <div class="col-lg-4 col-md-6">
           <div
             class="home-icon mx-auto border border-dark rounded-circle text-center text-primary"
           >
-            <i class="fas fa-cog"></i>
+            <i class="fas fa-shipping-fast"></i>
           </div>
-          <h4 class="my-3 text-center">Web Consulting</h4>
+          <h4 class="my-3 text-center">訂後製造99.8%的新鮮</h4>
           <p class="text-muted">
-            Over time, we’ve learned a lot working with clients and our own products. Naturally, we’d like to share our knowledge with you. It’s ourknow-how that make things work.
+            新鮮的甜點是最美味的保證，採用下訂後製造。
+讓您輕鬆享受來自大師手藝的上乘滋味。
           </p>
         </div>
       </div>
     </section>
     <section class="container mt-5">
-      <h1 class="text-center">Gorgeous Themes</h1>
+      <h1 class="text-center">法式甜點</h1>
       <p class="text-muted text-center">
-        Gorgeous  Themes. Monthly New Theme Added.
+        Pâtisserie
       </p>
       <div class="row">
         <div
@@ -110,6 +104,7 @@
               :src="product.imageUrl[0]"
               @click="goProductDetail(product.id)"
               class="rounded-0"
+              style="max-height: 210px; overflow: hidden;"
             ></b-card-img>
             <b-card-body>
               <b-card-title class="mt-3">{{ product.title }}</b-card-title>
@@ -188,12 +183,12 @@ export default {
   data () {
     return {
       displayProductId: [
-        'i4xG3G7Mpno71fASsaKvB5E097FNKstsfLbxPdRJHB02Uej8NsLVXo4xdUBnVzfg',
-        '9Cl6IobirSBFOkCHNwf08xIfZmchxavIlQMeUfX30EuTPb3EOpDNQ0x1O3i1WIRF',
-        'aFaLhRsEUkAbpFo1QU1FXPU4zUlLDTN46Me7jwvQ9u7SevhTmkCFjgPSfjgvWL5q',
-        'lXgYxI1AkyeBN28UP1LEdHZt5je6dyKY5XPAhfoNLelJRGoJrQDH5xvqxEBt7bwl',
-        'wFVkhk1DgzDuKUSAY8VR0QJo1jWmNDDbRgVFMhSktkRoNASI787szNrW0JLgPPsi',
-        'ZQIjR5bl0KCqSy4JnE8kGkVm2HDpVbxdIpnff3OWYcX06aIL0plqx2LgsoILO42Z'
+        'SxhXskX2pmJaqhFQ6F4KjwQcB8goMNYtJZXv7IBYCOdxXKHls1gWCMLF0WNONW0B',
+        'JWmZtR6SvnXfhRyrVDeXXjTxKCwZWoXANGac3fHROsZLiWGhzggfwx8VLrmAXeyy',
+        'dGBIBgtFgnIZjOlL7F5lrMPQGioZysrUgLBO6cv7DN6pzXup6TT1arklff4pJlni',
+        '53XXgNQgoEY2clcu358vQCI78SFio0SCJANRHO3F59hGKcVuRHSUjlxMhsV3qkAj',
+        'dLy2xr0m0GbrbuDxvSlA0qhVKRqN5kGHily9IV9h4lJPL7VSEOzoCGxk4I5KiK3N',
+        'I8vZDg7L31M6gAX7pajbxgAJmi0Ss9Yq44mGvmMISMPfnemcZiDVCBmJlj6mPBWb'
       ],
       displayProduct: [],
       form: {
@@ -269,7 +264,14 @@ export default {
   left: 4%;
 }
 
+.home-slogan-h1 {
+  background: white;
+  transform: rotate(-3deg) translate(10px,-25px);
+}
+
 .home-description {
+  background: white;
+  transform: rotate(-1deg) translate(5px,-20px);
   color: #8b919f;
   font-size: 24px;
 }

@@ -125,8 +125,8 @@ export default {
         height: 600,
         class: 'my-2'
       },
-      filter: ['All Themes', 'Multipurpose', 'Commercial', 'Admin', 'Landing Page'],
-      filterTerm: 'All Themes'
+      filter: ['All', '蛋糕', '小點', '常溫點心'],
+      filterTerm: 'All'
     }
   },
   created () {
@@ -141,6 +141,7 @@ export default {
       const apiProducts = `${process.env.VUE_APP_APIPATH}/${process.env.VUE_APP_UUID}/ec/products`
       return new Promise((resolve, reject) => {
         this.axios.get(apiProducts).then((res) => {
+          console.log(res.data.data)
           this.$bus.$emit('show-overlay', false)
           resolve(res.data.data)
         }).catch(err => {
@@ -185,7 +186,7 @@ export default {
   },
   computed: {
     filteredList () {
-      if (this.filterTerm === 'All Themes') {
+      if (this.filterTerm === 'All') {
         return this.products
       } else {
         return this.products.filter(product => {

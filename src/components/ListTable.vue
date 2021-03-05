@@ -22,6 +22,8 @@
             type="button"
             class="btn btn-outline-primary btn-sm">編輯</button>
           <button @click="$emit('comfirm-delete', item.id)" data-toggle="modal" data-target="#confirm-delete" type="button" class="btn btn-outline-danger btn-sm">刪除</button>
+          <button type="button"
+            class="btn btn-outline-primary btn-sm" @click="$emit('duplicate', item)">複製</button>
         </td>
       </tr>
     </tbody>
