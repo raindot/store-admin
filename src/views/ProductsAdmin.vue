@@ -11,7 +11,9 @@
           :items="products"
           :columns="columns"
           @open-modal="openModal"
-          @comfirm-delete=";(function(){productIdToBeDelete = $event; $bvModal.show('confirm-delete')})()">
+          @comfirm-delete=";(function(){productIdToBeDelete = $event; $bvModal.show('confirm-delete')})()"
+          @duplicate="duplicate"
+          >
         </list-table>
         <pagination :pagination="pagination" @emit-page="getProducts"></pagination>
         <product-modal
@@ -83,7 +85,7 @@ export default {
         .get(productsPath, {
           params: {
             page: page,
-            paged: 5
+            paged: 10
           }
         })
         .then((res) => {
@@ -158,6 +160,10 @@ export default {
           this.btnLoading = false
           console.log(err)
         })
+    },
+    duplicate (product) {
+      product.description = product.content
+      this.saveProduct({ product, isNew: true })
     }
   }
 }
